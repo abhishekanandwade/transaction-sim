@@ -1,12 +1,12 @@
 package atm
 
 type DepositTransaction struct {
-	BasicTransaction
+	BaseTransaction
 }
 
-func NewDepositTransaction(trnsactionNo int, account *Account, amount int) *DepositTransaction {
+func NewDepositTransaction(trnsactionNo string, account *Account, amount int) *DepositTransaction {
 	return &DepositTransaction{
-		BasicTransaction: BasicTransaction{
+		BaseTransaction: BaseTransaction{
 			transactionNo: trnsactionNo,
 			account:       account,
 			amount:        amount,

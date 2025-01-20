@@ -1,12 +1,12 @@
 package atm
 
 type WithdrawTransaction struct {
-	BasicTransaction
+	BaseTransaction
 }
 
-func NewWithdrawTransaction(transactionId int, account *Account, amount int) *WithdrawTransaction {
+func NewWithdrawTransaction(transactionId string, account *Account, amount int) *WithdrawTransaction {
 	return &WithdrawTransaction{
-		BasicTransaction: BasicTransaction{
+		BaseTransaction: BaseTransaction{
 			transactionNo: transactionId,
 			account:       account,
 			amount:        amount,

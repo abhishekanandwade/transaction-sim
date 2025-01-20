@@ -17,30 +17,12 @@ func (b *Banking) CreateAccount(accNo int, balance int) {
 	b.accounts[accNo] = NewAccount(accNo, balance)
 }
 
-func (b *Banking) ChackBalance(accNo int) int {
+func (b *Banking) GetAccount(accNo int) *Account {
 	b.mu.RLock()
 	defer b.mu.RUnlock()
-	return b.accounts[accNo].balance
+	return b.accounts[accNo]
 }
 
-func (b *Banking) CreditAmount(accNo int, amt int) error {
-	b.mu.Lock()
-	defer b.mu.Unlock()
-
-	if err := b.accounts[accNo].Credit(amt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (b *Banking) DebitAmount(accNo int, amt int) error {
-	b.mu.Lock()
-	defer b.mu.Unlock()
-
-	if err := b.accounts[accNo].Debit(amt); err != nil {
-		return err
-	}
-
-	return nil
+func (b *Banking) RegisterTransaction(transaction Transaction) error {
+	return transaction.Execute()
 }

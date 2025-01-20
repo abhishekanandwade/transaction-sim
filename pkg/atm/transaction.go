@@ -1,11 +1,11 @@
 package atm
 
 type Transaction interface {
-	Execute(amount int) error
+	Execute() error
 }
 
 type BaseTransaction struct {
-	transactionNo int
+	transactionNo string
 	account       *Account
 	amount        int
 }
